@@ -1,0 +1,462 @@
+    1  echo "***************************** Docker Demo 1 ****************************************"
+    2  docker images 
+    3  docker ps 
+    4  docker run busybox echo "Welcome to the world of Docker Containers."
+    5  docker run busybox echo "Welcome to the world of Docker Containers Test - 2 "
+    6  history 
+    7  history  >> myproject/02-Docker/Day2_History.txt
+    8  ls
+    9  cd myproject/
+   10  ls
+   11  cd 02-Docker/
+   12  ls
+   13  cd ..
+   14  ls
+   15  git add . ; git commit -m "Day2_History.txt"; git push 
+   16  git push origin master
+   17  
+   18  history 
+   19  echo "***************************** Docker Demo 2 ****************************************"
+   20  ls
+   21  docker images 
+   22  docker pull ubuntu
+   23  docker pull ubuntu:16.04
+   24  docker images 
+   25  docker pull amitvashist7/k8s-tiny-web
+   26  docker images 
+   27  docker pull amitvashist7/k8s-tiny-web:2
+   28  docker images 
+   29  docker pull amitvashist7/apache-ex4
+   30  docker login 
+   31  docker images 
+   32  docker pull amitvashist7/apache-ex4
+   33  docker pull httpd:alpine
+   34  docker images 
+   35  docker logout 
+   36  docker images 
+   37  docker rmi 5d592881faed
+   38  ls
+   39  docker search tomcat
+   40  docker pull tomcat
+   41  docker images 
+   42  ls
+   43  history >> 02-Docker/Day2_History.txt 
+   44  ls
+   45  git add . ; git commit -m "Docker Image History"; git push origin master
+   46  echo "***************************** Docker Demo 3 ****************************************"
+   47  ls
+   48  docker images 
+   49  docker run ubuntu:16.04 echo "Hey Ubuntu"
+   50  docker ps 
+   51  docker ps -a
+   52  docker run -it ubuntu:16.04 
+   53  docker ps 
+   54  docker run -it ubuntu:16.04 
+   55  docker ps 
+   56  docker run -it ubuntu:16.04 
+   57  docker ps 
+   58  docker run -itd ubuntu:16.04 
+   59  docker ps 
+   60  docker run -itd --name test-demo-1 ubuntu:16.04 
+   61  docker ps 
+   62  docker run -itd --name webapp-cont-1 ubuntu:16.04 
+   63  docker run -itd --name webapp-cont-2 ubuntu:16.04 
+   64  docker ps 
+   65  docker run -itd --name webapp-cont-2 ubuntu:16.04 
+   66  docker stop webapp-cont-2
+   67  docker ps 
+   68  docker run -itd --name webapp-cont-2 ubuntu:16.04 
+   69  docker ps 
+   70  docker ps -a
+   71  docker start webapp-cont-2
+   72  docker ps 
+   73  ls
+   74  docker ps 
+   75  docker run -itd --name webapp-new-app-1 ubuntu:16.04 
+   76  docker stop webapp-cont-2
+   77  docker rename webapp-cont-2 webapp-cont-22
+   78  docker ps
+   79  docker ps -a 
+   80  history 
+   81  ls
+   82  history >> 02-Docker/Day2_History.txt 
+   83  git add . ; git commit -m "Docker Container History - 1.1"; git push origin master
+   84  history 
+   85  ls
+   86  docker run -it --name mywebapp ubuntu:16.04 
+   87  docker ps 
+   88  docker inspect mywebapp
+   89  curl localhost 
+   90  curl "172.17.0.9"
+   91  curl 172.17.0.9/info.html
+   92  docker container ls 
+   93  docker container ls -a
+   94  docker container ls -q
+   95  docker container ls -aq
+   96  docker container ls -l
+   97  docker ps -l
+   98  docker ps -ql
+   99  docker ps -qa
+  100  docker ps 
+  101  curl 172.17.0.9/info.html
+  102  docker attach dbf55ca86cf2
+  103  curl 172.17.0.9/info.html
+  104  docker kill dbf55ca86cf2
+  105  docker ps 
+  106  docker ps -a
+  107  docker start mywebapp
+  108  docker ps 
+  109  docker attach mywebapp
+  110  docker ps 
+  111  docker inspect dbf55ca86cf2
+  112  docker ps 
+  113  docker exec -it mywebapp ip addr 
+  114  curl 172.17.0.9
+  115  docker exec -it mywebapp apache2ctl start 
+  116  curl 172.17.0.9
+  117  curl 172.17.0.9/info.html
+  118  history 
+  119  ls
+  120  cd 02-Docker/
+  121  ls
+  122  history > Day2_History.txt 
+  123  ls
+  124  cd ..
+  125  ls
+  126  git add . ; git commit -m "Docker Container History - 3.2"; git push origin master
+  127  cat /etc/apt/sources.list
+  128  docker images 
+  129  ls
+  130  docker ps 
+  131  docker commit -p -m "My First Apache Server" mywebapp mywebapp-image:v1
+  132  docker images 
+  133  docker run -itd mywebapp-image:v1
+  134  docker ps 
+  135  docker inspect 8afa118c8423
+  136  curl 172.17.0.11
+  137  docker ps 
+  138  docker attach mywebapp
+  139  docker commit -p -m "My First Apache Server" mywebapp mywebapp-image:v2
+  140  docker images 
+  141  docker run -itd --name test-webserver-1 mywebapp-image:v2
+  142  docker ps 
+  143  docker inspect test-webserver-1
+  144  curl 172.17.0.12
+  145  curl 172.17.0.12/info.html
+  146  docker run -itd --name test-webserver-2 mywebapp-image:v2
+  147  docker run -itd --name test-webserver-3 mywebapp-image:v2
+  148  curl 172.17.0.12/info.html
+  149  curl 172.17.0.13/info.html
+  150  curl 172.17.0.14/info.html
+  151  curl 172.17.0.15/info.html
+  152  ls
+  153  cd 02-Docker/
+  154  sl
+  155  ls
+  156  mkdir 01-Dockerfile/apache -p 
+  157  ls
+  158  cd 01-Dockerfile/apache/
+  159  ls
+  160  vim Dockerfile
+  161  ls
+  162  docker build -t mywebapp-dockerfile:v1 . 
+  163  vi Dockerfile 
+  164  docker build -t mywebapp-dockerfile:v1 . 
+  165  docker images 
+  166  docker run -d --name test-web-1 mywebapp-dockerfile:v1 
+  167  docker ps 
+  168  docker inspect test-web-1
+  169  curl "172.17.0.15"
+  170  ls
+  171  vim info.html
+  172  s
+  173  ls
+  174  vim Dockerfile 
+  175  docker build -t mywebapp-dockerfile:v2 . 
+  176  docker images 
+  177  docker run -d --name test-web-2 mywebapp-dockerfile:v2
+  178  curl "172.17.0.15"
+  179  curl 172.17.0.15/info.html
+  180  curl 172.17.0.16
+  181  curl 172.17.0.16/info.html
+  182  cd ..
+  183  ls
+  184  cd ..
+  185  ls
+  186  history > Day2_History.txt 
+  187  ls
+  188  cd ..
+  189  ls
+  190  git add . ; git commit -m "Docker Images History"; git push origin master
+  191  ls
+  192  history 
+  193  echo "***************************** Docker Demo 5 ****************************************"
+  194  ls
+  195  docker volume ls 
+  196  docker volume create my-vol
+  197  docker volume ls 
+  198  cd /var/lib/docker/
+  199  ls
+  200  cd containers/
+  201  ls
+  202  docker ps 
+  203  docker ps -a
+  204  docker kill $(docker ps -aq)
+  205  docker rm $(docker ps -aq)
+  206  ls
+  207  cd ..
+  208  ls
+  209  cd image/
+  210  ls
+  211  cd overlay2/
+  212  ls
+  213  cd ..
+  214  ls
+  215  cd ..
+  216  ls
+  217  cd volumes/
+  218  ls
+  219  docker volume ls 
+  220  docker volume inspect my-vol
+  221  pwd
+  222  ls
+  223  docker run -d --name devtest --mount source=my-vol,target=/var/www/html/app mywebapp-dockerfile:v2
+  224  docker ps 
+  225  docker inspect devtest
+  226  ls
+  227  curl 172.17.0.2
+  228  curl 172.17.0.2/info.html
+  229  curl 172.17.0.2/app
+  230  docker inspect devtest
+  231  ls
+  232  cd my-vol/
+  233  ls
+  234  cd _data/
+  235  ls
+  236  echo  "Welcome to Docker Volume" > 1.html
+  237  ls
+  238  cd ..
+  239  curl 172.17.0.2/app
+  240  curl 172.17.0.2/app/1.html
+  241  date >> _data/2.html
+  242  hostname >> _data/2.html
+  243  curl 172.17.0.2/app/2.html
+  244  cd 
+  245  ls
+  246  cd - 
+  247  cd ..
+  248  ls
+  249  cd 
+  250  docker ps 
+  251  docker exec -it devtest ls -ltr /var/www/html
+  252  docker exec -it devtest ls -ltr /var/www/html/app
+  253  history >> /var/lib/docker/volumes/my-vol/_data/history
+  254  docker exec -it devtest ls -ltr /var/www/html/app
+  255  ls
+  256  docker run -it -v /var/amitvashist ubuntu:16.04
+  257  docker volumes ls 
+  258  docker volume ls 
+  259  docker volume inspect 5e0c76fc9ccf4da17a7fcc6c78f30795b0e4ef525d1e04659856842370167a00
+  260  cd /var/lib/docker/volumes/5e0c76fc9ccf4da17a7fcc6c78f30795b0e4ef525d1e04659856842370167a00/_data
+  261  ls
+  262  cat hello.txt 
+  263  cd 
+  264  ls
+  265  pwd
+  266  cd gitlab-demo-ericsson-2020-Dec-14/
+  267  ls
+  268  git pull 
+  269  ls
+  270  git branch 
+  271  git checkout master 
+  272  ls
+  273  pwd
+  274  docker run -it -v /root/gitlab-demo-ericsson-2020-Dec-14:/var/mygitdata ubuntu:16.04
+  275  ls
+  276  docker run -it -v /root/gitlab-demo-ericsson-2020-Dec-14:/var/mygitdata:ro ubuntu:16.04
+  277  ls
+  278  docker ps -qa 
+  279  docker kill $(docker ps -qa ) 
+  280  docker rm $(docker ps -qa ) 
+  281  docker ps -a 
+  282  ls
+  283  cat date_stamp.txt 
+  284  docker volume ls 
+  285  cd /var/lib/docker/volumes/my-vol/_data/
+  286  ll
+  287  cd ..
+  288  ls
+  289  cd ..
+  290  ls
+  291  cd 5e0c76fc9ccf4da17a7fcc6c78f30795b0e4ef525d1e04659856842370167a00/
+  292  ls
+  293  cd _data/
+  294  ls
+  295  cat hello.txt 
+  296  cd ..
+  297  ls
+  298  cd ..
+  299  ls
+  300  cd 
+  301  ls
+  302  docker run -itd --name datacontainer -v /var/lib/amit -v /var/log/vashist -v /var/www/html/demo ubuntu:16.04
+  303  docker ps 
+  304  docker inspect datacontainer
+  305  docker run -d --volume-from datacontainer --name webserver-01 mywebapp-dockerfile:v2
+  306  docker images 
+  307  docker ps 
+  308  docker run -d --volumes-from datacontainer --name webserver-02 mywebapp-dockerfile:v2
+  309  docker run -d --volumes-from datacontainer --name webserver-03 mywebapp-dockerfile:v2
+  310  docker run -d --volumes-from datacontainer --name webserver-04 mywebapp-dockerfile:v2
+  311  docker ps 
+  312  docker inspect webserver-04
+  313  docker inspect webserver-03
+  314  docker inspect webserver-02
+  315  ls
+  316  docker inspect webserver-02
+  317  curl 172.17.0.3
+  318  curl 172.17.0.3/demo
+  319  curl 172.17.0.4/demo
+  320  curl 172.17.0.5/demo
+  321  curl 172.17.0.6/demo
+  322  ls
+  323  docker ps 
+  324  docker attach abc25c01581c
+  325  ls
+  326  history 
+  327  ls
+  328  cd myproject/
+  329  ls
+  330  cd 02-Docker/
+  331  ls
+  332  history > Day2_History.txt 
+  333  ls
+  334  cd ..ls
+  335  cd ..
+  336  ls
+  337  git add . ; git commit -m "Docker Volumes History"; git push origin master
+  338  ls
+  339  history 
+  340  docker network ls 
+  341  docker network inspect 8de02be52be9
+  342  ls
+  343  docker ps 
+  344  docker kill $(docker ps -qa)
+  345  docker network inspect 8de02be52be9
+  346  docker ps 
+  347  docker ps -a
+  348  docker start webserver-04
+  349  docker network inspect 8de02be52be9
+  350  docker start webserver-02
+  351  docker network inspect 8de02be52be9
+  352  ip addr 
+  353  docker ps 
+  354  docker exec -it webserver-04 ip addr 
+  355  ip netns 
+  356  ln -s /var/run/docker/netns /var/run/network 
+  357  ip netns 
+  358  ln -s /var/run/docker/netns /var/run/network/
+  359  ls
+  360  cd /var/run/network/
+  361  ls
+  362  cd netns
+  363  ls
+  364  ll
+  365  cd ..
+  366  ls
+  367  rm netns
+  368  ls
+  369  cd ..
+  370  ls
+  371  cd 
+  372  ln -s /var/run/docker/netns /var/run/netns
+  373  ip netns 
+  374  ip addr 
+  375  ip netns 
+  376  ip netns exec 4d1f65a55935 ip addr 
+  377  ip netns exec 76e6d569a994 ip addr 
+  378  docker ps 
+  379  docker stop webserver-02 webserver-04
+  380  ip netns 
+  381  docker start webserver-02 webserver-04 webserver-03
+  382  ip netns 
+  383  ip addr 
+  384  ip netns 
+  385  ip netns exec a3fca8706266 ip addr 
+  386  docker ps 
+  387  docker exec -it webserver-03 ip addr 
+  388  ls
+  389  docker images 
+  390  docker ps
+  391  docker run -d --name test-none-1 --network none mywebapp-dockerfile:v2 
+  392  docker ps 
+  393  docker exec -it test-none-1 ip addr 
+  394  docker network ls 
+  395  docker run -d --name test-host-1 --network host mywebapp-dockerfile:v2 
+  396  docker ps 
+  397  docker exec -it test-host-1 ip addr 
+  398  docker network ls 
+  399  docker network create --help
+  400  docker network create -d bridge --subnet=172.28.0.0/16 --ip-range=172.28.5.0/24 --gateway=172.28.0.254 mybr0
+  401  docker network ls 
+  402  docker network inspect mybr0
+  403  docker run -d --name test-new-mybr0-nw-net-1 --network mybr0 mywebapp-dockerfile:v2 
+  404  docker run -d --name test-new-mybr0-nw-net-2 --network mybr0 mywebapp-dockerfile:v2 
+  405  docker network inspect mybr0
+  406  docker ps 
+  407  docker exec -it test-new-mybr0-nw-net-1 ip addr 
+  408  docker exec -it test-new-mybr0-nw-net-2 ip addr 
+  409  ping 172.28.5.1
+  410  ping 172.28.5.0
+  411  curl 172.28.5.1
+  412  curl 172.28.5.1/info.html
+  413  curl 172.28.5.0/info.html
+  414  ls
+  415  docker ps 
+  416  curl 172.28.5.1/info.html
+  417  curl localhost
+  418  docker ps 
+  419  docker kill test-host-1
+  420  curl localhost
+  421  netstat -tulnp 
+  422  docker run -d -p 80:80 --name webapp-public-1 mywebapp-dockerfile:v2 
+  423  docker ps 
+  424  netstat -tulnp 
+  425  iptables -L
+  426  systemctl status docker 
+  427  curl localhost
+  428  curl localhost/info.html
+  429  ip addr 
+  430  docker run -d -p 8080:80 --name webapp-public-2 mywebapp-dockerfile:v2 
+  431  docker ps 
+  432  systemctl status docker 
+  433  docker run -d -p 8080:80 --name webapp-public-3 mywebapp-dockerfile:v2 
+  434  docker run -d -p 8081:80 --name webapp-public-4 mywebapp-dockerfile:v2 
+  435  docker ps 
+  436  ls
+  437  cd myproject/
+  438  ls
+  439  cd 02-Docker/
+  440  ls
+  441  cd 01-Dockerfile/
+  442  ls
+  443  cd apache/
+  444  docker run -d -P --name webapp-public-5 mywebapp-dockerfile:v2 
+  445  docker ps 
+  446  vim Dockerfile 
+  447  docker build -t mywebapp-dockerfile:v3 .
+  448  docker run -d -P --name webapp-public-6 mywebapp-dockerfile:v3
+  449  docker ps 
+  450  ls
+  451  vim Dockerfile 
+  452  ls
+  453  vim info.html 
+  454  docker build -t mywebapp-dockerfile:v4 .
+  455  docker run -d -P --name webapp-public-7 mywebapp-dockerfile:v4
+  456  docker ps 
+  457  telnet localhost 49155
+  458  telnet localhost 49154
+  459  ls
+  460  cd ..
+  461  ls
+  462  history > Day2_History.txt 
